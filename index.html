@@ -5,9 +5,7 @@
     <title>Para você, meu amor ❤️</title>
     <style>
         body {
-            background-color: #ffe6f0;
-            background-image: url('https://i.imgur.com/hgB5Hml.png');
-            background-repeat: repeat;
+            background: linear-gradient(to bottom, #ffe6f0, #ffffff);
             font-family: 'Comic Sans MS', cursive;
             text-align: center;
             padding: 30px;
@@ -37,13 +35,12 @@
             box-shadow: 0 0 20px rgba(255, 0, 128, 0.7);
         }
 
-        /* Corações caindo */
-        .heart {
+        .falling {
             position: fixed;
-            top: -10px;
-            color: #ff66a3;
+            top: -50px;
             animation: fall 5s linear infinite;
-            font-size: 20px;
+            z-index: 9999;
+            pointer-events: none;
         }
 
         @keyframes fall {
@@ -51,6 +48,35 @@
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
+        }
+
+        #contador {
+            margin-top: 40px;
+            font-size: 24px;
+            color: #99004d;
+            font-weight: bold;
+        }
+
+        /* Estilo do botão play */
+        #botaoPlay {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 128, 0.7);
+            z-index: 9999;
+            transition: transform 0.2s;
+        }
+
+        #botaoPlay:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -63,42 +89,95 @@
     </div>
 
     <p>
-        Meu amor, cada momento ao seu lado é um presente. <br>
-        Passamos por tantas coisas juntos, momentos difíceis, desafios... mas o nosso amor sempre foi mais forte que tudo. <br>
-        Quero que saiba que te amo com todo meu coração, e que você é a razão dos meus melhores sorrisos. <br>
-        Que essa data se repita muitas e muitas vezes, sempre juntos, sempre lado a lado. <br>
-        Te amo infinitamente. ❤️
-    </p>
+      Meu amor…
+Amar você é como viver um sonho que não tem fim.
+É acordar todos os dias sabendo que, ao seu lado, a vida tem mais cor, mais sentido, mais amor. ❤️
+Somos feitos de laços invisíveis, de promessas silenciosas, de olhares que se entendem, de mãos que se encontram até no escuro.
+Passamos por ventos fortes, por mares agitados… e aqui estamos… mais firmes, mais nossos, mais certos de que nada é por acaso.
+Em cada plano, em cada sorriso, em cada abraço apertado, mora o desejo de construir juntos... nossos sonhos, nossa família, nosso futuro... O nosso Dante ou nossa Luiza, que virá no tempo certo, no tempo perfeito de Deus. 🙏❤️
+Hoje agradeço não só o dia que você nasceu, mas também o privilégio de caminhar ao seu lado, de te amar, te cuidar e te fazer sorrir
+Que sua vida seja sempre iluminada, que nunca te falte amor, paz, saúde e alegrias  e que nunca te falte a certeza de que eu te amo… mais do que qualquer palavra, mais do que qualquer poema, mais do que qualquer dia bonito que o mundo possa oferecer ❤️
+Feliz aniversário, amor da minha vida. Te amo infinitamente! ❤
 
-    <!-- Música (opcional, depois colocamos) -->
-    <!-- <audio autoplay loop>
-        <source src="sua-musica.mp3" type="audio/mpeg">
-    </audio> -->
+                               
+    </p>
+	<div style="margin-top: 20px; font-size: 26px; color: #e60073;">
+    <b>❤ NEOQEAV ❤</b>
+		</div>
+
+    <!-- Contador de dias -->
+    <div id="contador"></div>
+	<footer style="margin-top: 50px; padding-top: 10px; border-top: 2px solid #ff99cc; color: black; font-size: 16px;">
+    ♾️✨ Eternizados na internet e na vida ✨♾️
+</footer>
+
+
+    <!-- Botão play -->
+    <button id="botaoPlay" onclick="tocarMusica()">▶️</button>
+
+    <!-- Áudio -->
+    <audio id="musica" src="musica.mp3" loop></audio>
 
     <script>
-        // Troca de imagens
-        const imagens = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+        // Slideshow de fotos
+        const imagens = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg", "foto5.jpg"];
         let index = 0;
         const slide = document.getElementById("slide");
 
         setInterval(() => {
             index = (index + 1) % imagens.length;
             slide.src = imagens[index];
-        }, 3000); // Troca a cada 3 segundos
+        }, 3000);
 
-        // Corações caindo
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-            heart.innerText = "❤️";
-            document.body.appendChild(heart);
+        // Corações e pétalas caindo
+        function createFallingElement(content, size) {
+            const element = document.createElement("div");
+            element.classList.add("falling");
+            element.style.left = Math.random() * 100 + "vw";
+            element.style.fontSize = (Math.random() * size + 10) + "px";
+            element.innerHTML = content;
+            document.body.appendChild(element);
 
             setTimeout(() => {
-                heart.remove();
+                element.remove();
             }, 5000);
+        }
+
+        // Corações ❤️
+        setInterval(() => {
+            createFallingElement('❤️', 20);
         }, 500);
+
+        // Pétalas 🌸
+        setInterval(() => {
+            createFallingElement('🌸', 25);
+        }, 700);
+
+        // Contador de tempo juntos
+        function atualizarContador() {
+            const dataInicio = new Date('2017-06-25T00:00:00');
+            const agora = new Date();
+
+            const diff = agora - dataInicio;
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('contador').innerHTML = 
+                `Estamos juntos há: ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos. ❤️`;
+        }
+
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        // Função tocar música e esconder botão
+        function tocarMusica() {
+            const audio = document.getElementById('musica');
+            audio.play();
+            document.getElementById('botaoPlay').style.display = 'none';
+        }
     </script>
 
 </body>
