@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Para você, meu amor ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6f0;
+            background-image: url('https://i.imgur.com/hgB5Hml.png');
+            background-repeat: repeat;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #e60073;
+            font-size: 40px;
+        }
+
+        p {
+            color: #4d004d;
+            font-size: 22px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .slideshow {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .slideshow img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.7);
+        }
+
+        /* Corações caindo */
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #ff66a3;
+            animation: fall 5s linear infinite;
+            font-size: 20px;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Feliz Aniversário, meu amor! ❤️</h1>
+
+    <div class="slideshow">
+        <img id="slide" src="foto1.jpg" alt="Foto nossa">
+    </div>
+
+    <p>
+        Meu amor, cada momento ao seu lado é um presente. <br>
+        Passamos por tantas coisas juntos, momentos difíceis, desafios... mas o nosso amor sempre foi mais forte que tudo. <br>
+        Quero que saiba que te amo com todo meu coração, e que você é a razão dos meus melhores sorrisos. <br>
+        Que essa data se repita muitas e muitas vezes, sempre juntos, sempre lado a lado. <br>
+        Te amo infinitamente. ❤️
+    </p>
+
+    <!-- Música (opcional, depois colocamos) -->
+    <!-- <audio autoplay loop>
+        <source src="sua-musica.mp3" type="audio/mpeg">
+    </audio> -->
+
+    <script>
+        // Troca de imagens
+        const imagens = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+        let index = 0;
+        const slide = document.getElementById("slide");
+
+        setInterval(() => {
+            index = (index + 1) % imagens.length;
+            slide.src = imagens[index];
+        }, 3000); // Troca a cada 3 segundos
+
+        // Corações caindo
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.innerText = "❤️";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }, 500);
+    </script>
+
+</body>
+</html>
